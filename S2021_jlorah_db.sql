@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 24, 2021 at 08:58 PM
+-- Generation Time: Apr 27, 2021 at 11:44 PM
 -- Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -202,9 +202,40 @@ INSERT INTO `STUDENT_ADVISOR` (`STUDENT_ID`, `ADVISOR_FNAME`, `ADVISOR_LNAME`) V
 --
 
 CREATE TABLE `STUDENT_CLASS` (
+  `CLASS` int(50) NOT NULL,
   `CLASS_ID` varchar(50) NOT NULL,
   `STUDENT_ID` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `STUDENT_CLASS`
+--
+
+INSERT INTO `STUDENT_CLASS` (`CLASS`, `CLASS_ID`, `STUDENT_ID`) VALUES
+(1, '1710', '1803544'),
+(2, '1710', '1806654'),
+(3, '1720', '1803544'),
+(4, '1720', '1806654'),
+(5, '1710', '1709833'),
+(6, '1710', '1704387'),
+(7, '1710', '1609932'),
+(8, '1710', '1604366'),
+(9, '1710', '1503455'),
+(10, '1710', '1503244'),
+(11, '1720', '1503244'),
+(12, '1720', '1503455'),
+(13, '1720', '1604366'),
+(14, '1720', '1609932'),
+(15, '1720', '1704387'),
+(16, '1720', '1709833'),
+(17, '1720', '1803544'),
+(18, '1720', '1806654'),
+(19, '2342', '1609932'),
+(20, '2342', '1604366'),
+(21, '2212', '1503244'),
+(22, '2212', '1503455'),
+(23, '2410', '1503455'),
+(24, '2410', '1604366');
 
 -- --------------------------------------------------------
 
@@ -213,10 +244,19 @@ CREATE TABLE `STUDENT_CLASS` (
 --
 
 CREATE TABLE `STUDENT_DOUBLE_MAJOR` (
-  `MAJOR_ID` varchar(50) NOT NULL,
   `STUDENT_ID` varchar(50) NOT NULL,
+  `MAJOR_ID` varchar(50) NOT NULL,
   `SECOND_MAJOR` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `STUDENT_DOUBLE_MAJOR`
+--
+
+INSERT INTO `STUDENT_DOUBLE_MAJOR` (`STUDENT_ID`, `MAJOR_ID`, `SECOND_MAJOR`) VALUES
+('1503244', '0493117', 'Graphic Design'),
+('1503455', '0724197', 'Business Administration'),
+('1604366', '0024966', 'Engineering');
 
 -- --------------------------------------------------------
 
@@ -249,10 +289,26 @@ INSERT INTO `STUDENT_INTERNSHIP` (`INTERNSHIP_ID`, `STUDENT_ID`, `COMPANY_ID`, `
 --
 
 CREATE TABLE `STUDENT_MAJOR` (
-  `MAJOR_ID` varchar(50) NOT NULL,
   `STUDENT_ID` varchar(50) NOT NULL,
+  `MAJOR_ID` varchar(50) NOT NULL,
   `TYPE` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `STUDENT_MAJOR`
+--
+
+INSERT INTO `STUDENT_MAJOR` (`STUDENT_ID`, `MAJOR_ID`, `TYPE`) VALUES
+('1207703', '0749567', 'B.S.'),
+('1307764', '0749567', 'B.S.'),
+('1503244', '0749567', 'B.S.'),
+('1503455', '0749568', 'B.S. with Concentration in Cyber'),
+('1604366', '0749567', 'B.S.'),
+('1609932', '0749567', 'B.S.'),
+('1704387', '0749566', 'B.A.'),
+('1709833', '0749566', 'B.A.'),
+('1803544', '0749568', 'B.S. with Concentration in Cyber'),
+('1806654', '0749567', 'B.S.');
 
 -- --------------------------------------------------------
 
@@ -262,9 +318,18 @@ CREATE TABLE `STUDENT_MAJOR` (
 
 CREATE TABLE `STUDENT_MINOR` (
   `STUDENT_ID` varchar(50) NOT NULL,
-  `MINOR` varchar(50) NOT NULL,
-  `MINOR_ID` varchar(50) NOT NULL
+  `MINOR_ID` varchar(50) NOT NULL,
+  `MINOR` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `STUDENT_MINOR`
+--
+
+INSERT INTO `STUDENT_MINOR` (`STUDENT_ID`, `MINOR_ID`, `MINOR`) VALUES
+('1307764', '0724198', 'Business Administration'),
+('1604366', '0573900', 'Communication'),
+('1609932', '0358211', 'Philosophy');
 
 -- --------------------------------------------------------
 
@@ -277,6 +342,18 @@ CREATE TABLE `STUDENT_PRES_SCHOLAR` (
   `LEVEL` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `STUDENT_PRES_SCHOLAR`
+--
+
+INSERT INTO `STUDENT_PRES_SCHOLAR` (`STUDENT_ID`, `LEVEL`) VALUES
+('1207703', 'Presidential Fellowship'),
+('1307764', 'Presidential Scholarship'),
+('1503455', 'Presidential Scholarship'),
+('1609932', 'Presidential Scholarship'),
+('1709833', 'Presidential Fellowship'),
+('1803544', 'Presidential Scholarship');
+
 -- --------------------------------------------------------
 
 --
@@ -284,10 +361,17 @@ CREATE TABLE `STUDENT_PRES_SCHOLAR` (
 --
 
 CREATE TABLE `STUDENT_TRIPLE_MAJOR` (
-  `MAJOR_ID` varchar(50) NOT NULL,
   `STUDENT_ID` varchar(50) NOT NULL,
+  `MAJOR_ID` varchar(50) NOT NULL,
   `THIRD_MAJOR` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `STUDENT_TRIPLE_MAJOR`
+--
+
+INSERT INTO `STUDENT_TRIPLE_MAJOR` (`STUDENT_ID`, `MAJOR_ID`, `THIRD_MAJOR`) VALUES
+('1604366', '0724197', 'Business Administration');
 
 --
 -- Indexes for dumped tables
@@ -339,13 +423,13 @@ ALTER TABLE `STUDENT_ADVISOR`
 -- Indexes for table `STUDENT_CLASS`
 --
 ALTER TABLE `STUDENT_CLASS`
-  ADD PRIMARY KEY (`CLASS_ID`);
+  ADD PRIMARY KEY (`CLASS`);
 
 --
 -- Indexes for table `STUDENT_DOUBLE_MAJOR`
 --
 ALTER TABLE `STUDENT_DOUBLE_MAJOR`
-  ADD PRIMARY KEY (`MAJOR_ID`);
+  ADD PRIMARY KEY (`STUDENT_ID`);
 
 --
 -- Indexes for table `STUDENT_INTERNSHIP`
@@ -357,13 +441,13 @@ ALTER TABLE `STUDENT_INTERNSHIP`
 -- Indexes for table `STUDENT_MAJOR`
 --
 ALTER TABLE `STUDENT_MAJOR`
-  ADD PRIMARY KEY (`MAJOR_ID`);
+  ADD PRIMARY KEY (`STUDENT_ID`);
 
 --
 -- Indexes for table `STUDENT_MINOR`
 --
 ALTER TABLE `STUDENT_MINOR`
-  ADD PRIMARY KEY (`MINOR_ID`);
+  ADD PRIMARY KEY (`STUDENT_ID`);
 
 --
 -- Indexes for table `STUDENT_PRES_SCHOLAR`
@@ -375,7 +459,17 @@ ALTER TABLE `STUDENT_PRES_SCHOLAR`
 -- Indexes for table `STUDENT_TRIPLE_MAJOR`
 --
 ALTER TABLE `STUDENT_TRIPLE_MAJOR`
-  ADD PRIMARY KEY (`MAJOR_ID`);
+  ADD PRIMARY KEY (`STUDENT_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `STUDENT_CLASS`
+--
+ALTER TABLE `STUDENT_CLASS`
+  MODIFY `CLASS` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
